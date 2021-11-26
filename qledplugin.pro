@@ -1,7 +1,7 @@
-CONFIG      += designer plugin debug_and_release
+CONFIG      += plugin debug_and_release
 TARGET      = $$qtLibraryTarget($$TARGET)
 TEMPLATE    = lib
-QT += svg
+QT += svg designer
 
 QTDIR_build:DESTDIR     = $$QT_BUILD_TREE/plugins/designer
 

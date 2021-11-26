@@ -110,4 +110,4 @@ QString QLedPlugin::includeFile() const
     return "qled.h";
 }
 
-Q_EXPORT_PLUGIN2(customwidgetplugin, QLedPlugin)
+Q_EXPORT_PLUGIN2(customwidgetplugin, QLedPlugin);

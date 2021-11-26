@@ -34,8 +34,8 @@ QLed::QLed(QWidget *parent)
       m_shape(Circle),
       renderer(new QSvgRenderer())
 {
-   shapes << ":/resources/circle_" << ":/resources/square_" << ":/resources/triang_" << ":/resources/round_";
-   colors << "red.svg" << "green.svg" << "yellow.svg" << "grey.svg" << "orange.svg" << "purple.svg" << "blue.svg";
+   shapes << "circle" << "square" << "triang" << "round";
+   colors << "red" << "green" << "yellow" << "grey" << "orange" << "purple" << "blue";
 }
 QLed::~QLed() {
     delete renderer;
@@ -48,19 +48,15 @@ QLed::~QLed() {
 */
 void QLed::paintEvent(QPaintEvent *)
 {
-    
-    QString ledShapeAndColor;
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    ledShapeAndColor = shapes[m_shape];
-
     ledColor colorIndex = m_value ? m_onColor : m_offColor;
-    ledShapeAndColor.append(colors[colorIndex]);
 
-    renderer->load(ledShapeAndColor);
+    QString filePathTemplate(":/resources/%1_%2.svg");
+    QString filePath = filePathTemplate.arg(shapes[m_shape], colors[colorIndex]);
+    renderer->load(filePath);
     renderer->render(&painter);
-
 }
 
 

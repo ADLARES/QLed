@@ -34,12 +34,15 @@ QLed::QLed(QWidget *parent)
       m_shape(Circle),
       renderer(new QSvgRenderer())
 {
-   shapes << "circle" << "square" << "triang" << "round";
-   colors << "red" << "green" << "yellow" << "grey" << "orange" << "purple" << "blue";
+    shapes << "circle" << "square" << "triang" << "round";
+    colors << "red" << "green" << "yellow" << "grey" << "orange" << "purple" << "blue";
 }
+
+
 QLed::~QLed() {
     delete renderer;
 }
+
 
 /*!
   \brief paintEvent: painting method
@@ -67,8 +70,8 @@ void QLed::paintEvent(QPaintEvent *)
 */
 void QLed::setOnColor(ledColor newColor)
 {
-   m_onColor = newColor;
-   update();
+    m_onColor = newColor;
+    update();
 }
 
 
@@ -79,8 +82,8 @@ void QLed::setOnColor(ledColor newColor)
 */
 void QLed::setOffColor(ledColor newColor)
 {
-   m_offColor = newColor;
-   update();
+    m_offColor = newColor;
+    update();
 }
 
 
@@ -91,8 +94,8 @@ void QLed::setOffColor(ledColor newColor)
 */
 void QLed::setShape(ledShape newShape)
 {
-   m_shape = newShape;
-   update();
+    m_shape = newShape;
+    update();
 }
 
 
@@ -103,8 +106,8 @@ void QLed::setShape(ledShape newShape)
 */
 void QLed::setValue(bool value)
 {
-   m_value = value;
-   update();
+    m_value = value;
+    update();
 }
 
 

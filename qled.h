@@ -55,7 +55,6 @@ public slots:
 protected:
     bool m_value;
     ledColor m_onColor, m_offColor;
-    int id_Timer;
     ledShape m_shape;
     QStringList shapes;
     QStringList colors;

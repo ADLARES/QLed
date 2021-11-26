@@ -124,5 +124,4 @@ void QLed::toggleValue()
 { 
     m_value =! m_value;
     update();
-    return;
 }

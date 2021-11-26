@@ -25,6 +25,7 @@ class QLedPlugin : public QObject, public QDesignerCustomWidgetInterface
 {
     Q_OBJECT
     Q_INTERFACES(QDesignerCustomWidgetInterface)
+    Q_PLUGIN_METADATA(IID "com.adlares.Qt.Widgets.QLedPlugin/1.0")
 
 public:
     QLedPlugin(QObject *parent = nullptr);

@@ -55,10 +55,8 @@ void QLed::paintEvent(QPaintEvent *)
 
     ledShapeAndColor = shapes[m_shape];
 
-    if(m_value)
-        ledShapeAndColor.append(colors[m_onColor]);
-    else
-        ledShapeAndColor.append(colors[m_offColor]);
+    ledColor colorIndex = m_value ? m_onColor : m_offColor;
+    ledShapeAndColor.append(colors[colorIndex]);
 
     renderer->load(ledShapeAndColor);
     renderer->render(&painter);

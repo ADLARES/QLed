@@ -17,7 +17,7 @@
 #include "qledplugin.h"
 #include <QtPlugin>
 
-// See Cusotm Widget Plugin Example in Qt online documentation to understand the meaning of this file
+// See Custom Widget Plugin Example in Qt online documentation to understand the meaning of this file
 
 QLedPlugin::QLedPlugin(QObject *parent)
     : QObject(parent)
@@ -110,4 +110,4 @@ QString QLedPlugin::includeFile() const
     return "qled.h";
 }
 
-Q_EXPORT_PLUGIN2(customwidgetplugin, QLedPlugin)
+Q_EXPORT_PLUGIN2(customwidgetplugin, QLedPlugin);

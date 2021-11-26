@@ -12,7 +12,7 @@
  *   GNU Lesser General Public License for more details.                   *
  *   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.               *
  ***************************************************************************/
-  
+
 #include <QColor>
 #include <QtGlobal>
 #include <QtGui>
@@ -27,20 +27,22 @@
   \param parent: The Parent Widget
 */
 QLed::QLed(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_value(false),
+      m_onColor(Red),
+      m_offColor(Grey),
+      m_shape(Circle),
+      renderer(new QSvgRenderer())
 {
-   m_value=false;
-   m_onColor=Red;
-   m_offColor=Grey;
-   m_shape=Circle;
-   shapes << ":/resources/circle_" << ":/resources/square_" << ":/resources/triang_" << ":/resources/round_";
-   colors << "red.svg" << "green.svg" << "yellow.svg" << "grey.svg" << "orange.svg" << "purple.svg" << "blue.svg";
+    shapes << "circle" << "square" << "triang" << "round";
+    colors << "red" << "green" << "yellow" << "grey" << "orange" << "purple" << "blue";
+}
 
-   renderer = new QSvgRenderer();
-}
+
 QLed::~QLed() {
-	delete renderer;
+    delete renderer;
 }
+
 
 /*!
   \brief paintEvent: painting method
@@ -49,21 +51,15 @@ QLed::~QLed() {
 */
 void QLed::paintEvent(QPaintEvent *)
 {
-    
-    QString ledShapeAndColor;
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    ledShapeAndColor=shapes[m_shape];
+    ledColor colorIndex = m_value ? m_onColor : m_offColor;
 
-    if(m_value)
-        ledShapeAndColor.append(colors[m_onColor]);
-    else
-        ledShapeAndColor.append(colors[m_offColor]);
-
-    renderer->load(ledShapeAndColor);
+    QString filePathTemplate(":/resources/%1_%2.svg");
+    QString filePath = filePathTemplate.arg(shapes[m_shape], colors[colorIndex]);
+    renderer->load(filePath);
     renderer->render(&painter);
-
 }
 
 
@@ -74,8 +70,8 @@ void QLed::paintEvent(QPaintEvent *)
 */
 void QLed::setOnColor(ledColor newColor)
 {
-   m_onColor=newColor;
-   update();
+    m_onColor = newColor;
+    update();
 }
 
 
@@ -86,8 +82,8 @@ void QLed::setOnColor(ledColor newColor)
 */
 void QLed::setOffColor(ledColor newColor)
 {
-   m_offColor=newColor;
-   update();
+    m_offColor = newColor;
+    update();
 }
 
 
@@ -98,8 +94,8 @@ void QLed::setOffColor(ledColor newColor)
 */
 void QLed::setShape(ledShape newShape)
 {
-   m_shape=newShape;
-   update();
+    m_shape = newShape;
+    update();
 }
 
 
@@ -110,8 +106,8 @@ void QLed::setShape(ledShape newShape)
 */
 void QLed::setValue(bool value)
 {
-   m_value=value;
-   update();
+    m_value = value;
+    update();
 }
 
 
@@ -122,7 +118,6 @@ void QLed::setValue(bool value)
 */
 void QLed::toggleValue()
 { 
-	m_value=!m_value;
-	update();
-	return; 
+    m_value =! m_value;
+    update();
 }

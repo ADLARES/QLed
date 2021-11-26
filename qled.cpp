@@ -27,16 +27,15 @@
   \param parent: The Parent Widget
 */
 QLed::QLed(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent),
+      m_value(false),
+      m_onColor(Red),
+      m_offColor(Grey),
+      m_shape(Circle),
+      renderer(new QSvgRenderer())
 {
-   m_value=false;
-   m_onColor=Red;
-   m_offColor=Grey;
-   m_shape=Circle;
    shapes << ":/resources/circle_" << ":/resources/square_" << ":/resources/triang_" << ":/resources/round_";
    colors << "red.svg" << "green.svg" << "yellow.svg" << "grey.svg" << "orange.svg" << "purple.svg" << "blue.svg";
-
-   renderer = new QSvgRenderer();
 }
 QLed::~QLed() {
     delete renderer;

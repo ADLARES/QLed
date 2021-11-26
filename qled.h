@@ -37,7 +37,7 @@ Q_OBJECT
 
 public:
     QLed(QWidget *parent = nullptr);
-    virtual ~QLed();
+    ~QLed() override;
     bool value() const { return m_value; }
     enum ledColor { Red = 0, Green, Yellow, Grey, Orange, Purple, Blue };
     enum ledShape { Circle = 0, Square, Triangle, Rounded };
@@ -59,7 +59,7 @@ protected:
     ledShape m_shape;
     QStringList shapes;
     QStringList colors;
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 private:
     QSvgRenderer *renderer;
 };

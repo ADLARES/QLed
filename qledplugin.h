@@ -27,7 +27,7 @@ class QLedPlugin : public QObject, public QDesignerCustomWidgetInterface
     Q_INTERFACES(QDesignerCustomWidgetInterface)
 
 public:
-    QLedPlugin(QObject *parent = 0);
+    QLedPlugin(QObject *parent = nullptr);
 
     bool isContainer() const;
     bool isInitialized() const;

@@ -29,13 +29,12 @@
 QLed::QLed(QWidget *parent)
     : QWidget(parent),
       m_value(false),
-      m_onColor(Red),
-      m_offColor(Grey),
+      m_onColor("Red"),
+      m_offColor("Grey"),
       m_shape(Circle),
       renderer(new QSvgRenderer())
 {
     shapes << "circle" << "square" << "triang" << "round";
-    colors << "red" << "green" << "yellow" << "grey" << "orange" << "purple" << "blue";
 }
 
 
@@ -54,21 +53,30 @@ void QLed::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    ledColor colorIndex = m_value ? m_onColor : m_offColor;
+    QColor currentColor = m_value ? m_onColor : m_offColor;
 
-    QString filePathTemplate(":/resources/%1_%2.svg");
-    QString filePath = filePathTemplate.arg(shapes[m_shape], colors[colorIndex]);
-    renderer->load(filePath);
+    QString filePathTemplate(":/resources/%1.svg");
+    QString filePath = filePathTemplate.arg(shapes[m_shape]);
+
+    QFile svgFile(filePath);
+    svgFile.open(QIODevice::ReadOnly);
+    auto svgContent = svgFile.readAll();
+    svgFile.close();
+
+    svgContent.replace("{$color_dark}", currentColor.darker().name(QColor::HexRgb).toLatin1());
+    svgContent.replace("{$color_light}", currentColor.name(QColor::HexRgb).toLatin1());
+
+    renderer->load(svgContent);
     renderer->render(&painter);
 }
 
 
 /*!
-  \brief setOnColor: this method allows to change the On color {Red,Green,Yellow,Grey,Orange,Purple,blue}
-  \param ledColor newColor
+  \brief setOnColor: this method allows to change the On color
+  \param QColor newColor
   \return void
 */
-void QLed::setOnColor(ledColor newColor)
+void QLed::setOnColor(QColor newColor)
 {
     m_onColor = newColor;
     update();
@@ -76,11 +84,11 @@ void QLed::setOnColor(ledColor newColor)
 
 
 /*!
-  \brief setOffColor: this method allows to change the Off color {Red,Green,Yellow,Grey,Orange,Purple,blue}
-  \param ledColor newColor
+  \brief setOffColor: this method allows to change the Off color
+  \param QColor newColor
   \return void
 */
-void QLed::setOffColor(ledColor newColor)
+void QLed::setOffColor(QColor newColor)
 {
     m_offColor = newColor;
     update();

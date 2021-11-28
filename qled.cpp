@@ -58,7 +58,13 @@ void QLed::paintEvent(QPaintEvent *)
 
     QString filePathTemplate(":/resources/%1_%2.svg");
     QString filePath = filePathTemplate.arg(shapes[m_shape], colors[colorIndex]);
-    renderer->load(filePath);
+
+    QFile svgFile(filePath);
+    svgFile.open(QIODevice::ReadOnly);
+    auto svgContent = svgFile.readAll();
+    svgFile.close();
+
+    renderer->load(svgContent);
     renderer->render(&painter);
 }
 

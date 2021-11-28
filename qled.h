@@ -57,6 +57,7 @@ protected:
     QStringList shapes;
     void paintEvent(QPaintEvent *event) override;
 private:
+    void updateRenderer();
     QSvgRenderer *renderer;
 };
 

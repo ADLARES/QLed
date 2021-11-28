@@ -35,6 +35,7 @@ QLed::QLed(QWidget *parent)
       renderer(new QSvgRenderer())
 {
     shapes << "circle" << "square" << "triang" << "round";
+    updateRenderer();
 }
 
 
@@ -52,7 +53,16 @@ void QLed::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
+    renderer->render(&painter);
+}
 
+
+/*!
+  \brief updateRenderer: this updates the renderer to contain the correct data for the current properties
+  \return void
+*/
+void QLed::updateRenderer()
+{
     QColor currentColor = m_value ? m_onColor : m_offColor;
 
     QString filePathTemplate(":/resources/%1.svg");
@@ -67,7 +77,6 @@ void QLed::paintEvent(QPaintEvent *)
     svgContent.replace("{$color_light}", currentColor.name(QColor::HexRgb).toLatin1());
 
     renderer->load(svgContent);
-    renderer->render(&painter);
 }
 
 
@@ -79,6 +88,7 @@ void QLed::paintEvent(QPaintEvent *)
 void QLed::setOnColor(QColor newColor)
 {
     m_onColor = newColor;
+    updateRenderer();
     update();
 }
 
@@ -91,6 +101,7 @@ void QLed::setOnColor(QColor newColor)
 void QLed::setOffColor(QColor newColor)
 {
     m_offColor = newColor;
+    updateRenderer();
     update();
 }
 
@@ -103,6 +114,7 @@ void QLed::setOffColor(QColor newColor)
 void QLed::setShape(ledShape newShape)
 {
     m_shape = newShape;
+    updateRenderer();
     update();
 }
 
@@ -115,6 +127,7 @@ void QLed::setShape(ledShape newShape)
 void QLed::setValue(bool value)
 {
     m_value = value;
+    updateRenderer();
     update();
 }
 
@@ -127,5 +140,6 @@ void QLed::setValue(bool value)
 void QLed::toggleValue()
 { 
     m_value =! m_value;
+    updateRenderer();
     update();
 }

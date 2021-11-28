@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+QT += core gui widgets
+
 TARGET = example
 TEMPLATE = app
 

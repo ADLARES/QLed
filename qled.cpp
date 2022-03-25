@@ -27,7 +27,7 @@
   \param parent: The Parent Widget
 */
 QLed::QLed(QWidget *parent)
-    : QWidget(parent),
+    : QAbstractButton(parent),
       m_value(false),
       m_onColor("Red"),
       m_offColor("Grey"),
@@ -35,6 +35,8 @@ QLed::QLed(QWidget *parent)
       renderer(new QSvgRenderer())
 {
     shapes << "circle" << "square" << "triang" << "round" << "rect";
+    setMouseTracking(true);
+    setAttribute(Qt::WA_MacShowFocusRect);
     updateRenderer();
 }
 

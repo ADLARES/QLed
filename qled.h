@@ -17,7 +17,7 @@
 #define QLED_H
 
 #include <Qt>
-#include <QWidget>
+#include <QAbstractButton>
 #include <QtDesigner/QDesignerExportWidget>
 
 // My Qt designer widget plugin class
@@ -25,7 +25,7 @@
 class QColor;
 class QSvgRenderer;
 
-class QDESIGNER_WIDGET_EXPORT QLed : public QWidget
+class QDESIGNER_WIDGET_EXPORT QLed : public QAbstractButton
 {
     Q_OBJECT
     Q_ENUMS (ledShape)

@@ -5,5 +5,6 @@
         <file>resources/triang.svg</file>
         <file>resources/round.svg</file>
         <file>resources/qled.png</file>
+        <file>resources/rect.svg</file>
     </qresource>
 </RCC>

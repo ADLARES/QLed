@@ -38,7 +38,7 @@ public:
     QLed(QWidget *parent = nullptr);
     ~QLed() override;
     bool value() const { return m_value; }
-    enum ledShape { Circle = 0, Square, Triangle, Rounded };
+    enum ledShape { Circle = 0, Square, Triangle, Rounded, Rectangle };
     QColor onColor() const { return m_onColor; }
     QColor offColor() const { return m_offColor; }
     ledShape shape() const { return m_shape; }

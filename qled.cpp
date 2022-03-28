@@ -34,7 +34,7 @@ QLed::QLed(QWidget *parent)
       m_shape(Circle),
       renderer(new QSvgRenderer())
 {
-    shapes << "circle" << "square" << "triang" << "round";
+    shapes << "circle" << "square" << "triang" << "round" << "rect";
     updateRenderer();
 }
 

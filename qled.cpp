@@ -35,6 +35,7 @@ QLed::QLed(QWidget *parent)
       renderer(new QSvgRenderer())
 {
     shapes << "circle" << "square" << "triang" << "round" << "rect";
+    setCheckable(true);
     setMouseTracking(true);
     setAttribute(Qt::WA_MacShowFocusRect);
     updateRenderer();
@@ -59,13 +60,26 @@ void QLed::paintEvent(QPaintEvent *)
 }
 
 
+void QLed::checkStateSet()
+{
+    updateRenderer();
+}
+
+
+void QLed::nextCheckState()
+{
+    QAbstractButton::nextCheckState();
+    updateRenderer();
+}
+
+
 /*!
   \brief updateRenderer: this updates the renderer to contain the correct data for the current properties
   \return void
 */
 void QLed::updateRenderer()
 {
-    QColor currentColor = m_value ? m_onColor : m_offColor;
+    QColor currentColor = m_value || isChecked() ? m_onColor : m_offColor;
 
     QString filePathTemplate(":/resources/%1.svg");
     QString filePath = filePathTemplate.arg(shapes[m_shape]);

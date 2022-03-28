@@ -56,6 +56,8 @@ protected:
     ledShape m_shape;
     QStringList shapes;
     void paintEvent(QPaintEvent *event) override;
+    void checkStateSet() override;
+    void nextCheckState() override;
 private:
     void updateRenderer();
     QSvgRenderer *renderer;

@@ -4,6 +4,8 @@
 #
 #-------------------------------------------------
 
+QT += core gui widgets
+
 TARGET = example
 TEMPLATE = app
 
@@ -11,10 +13,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         dialog.cpp
 
-HEADERS  += dialog.h\
-            qled.h
+HEADERS  += dialog.h
 
 FORMS    += dialog.ui
 
 LIBS += libqledplugin
 
+INCLUDEPATH += ..

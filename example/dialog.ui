@@ -17,18 +17,38 @@
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
-      <widget class="QLed" name="qLed" native="true">
+      <widget class="QLed" name="qLed">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="toolTip">
         <string>Binary Led</string>
        </property>
        <property name="whatsThis">
         <string>Led widget</string>
        </property>
-       <property name="value" stdset="0">
+       <property name="value">
         <bool>false</bool>
        </property>
-       <property name="blink" stdset="0">
-        <bool>false</bool>
+       <property name="onColor">
+        <color>
+         <red>85</red>
+         <green>170</green>
+         <blue>0</blue>
+        </color>
+       </property>
+       <property name="offColor">
+        <color>
+         <red>0</red>
+         <green>85</green>
+         <blue>0</blue>
+        </color>
+       </property>
+       <property name="shape">
+        <enum>QLed::Square</enum>
        </property>
       </widget>
      </item>

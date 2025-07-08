@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/qled">
+        <file>resources/circle.svg</file>
+        <file>resources/rect.svg</file>
+        <file>resources/round.svg</file>
+        <file>resources/square.svg</file>
+        <file>resources/triang.svg</file>
+    </qresource>
+</RCC>

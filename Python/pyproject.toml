@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qled"
+version = "0.1"
+description = "LED-style Qt widget using SVG and PySide6"
+authors = [
+    { name="K. Schumacher", email="schumacher@adlares.com" }
+]
+requires-python = ">=3.7"
+dependencies = ["PySide6"]
